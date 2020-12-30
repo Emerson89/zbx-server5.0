@@ -1,4 +1,4 @@
-# Instalação zabbix-server usando ansible
+# Instalação zabbix-server 5.0 usando ansible
 
 ![Badge](https://img.shields.io/badge/ansible-zabbix-red)
 

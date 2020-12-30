@@ -1,0 +1,67 @@
+#- name: Download repository remi-release-7
+#  get_url:
+#      url: http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+#      dest: /tmp/remi-release-7.rpm
+#      mode: 0777
+
+#- name: Add repository remi-release-7
+#  yum: name=/tmp/remi-release-7.rpm state=present
+
+#- name: Enabling remi-php72
+#  shell: yum-config-manager --enable remi-php72
+
+#- name: Installing php72
+#  yum: name={{ item }} state=present
+#  with_items:
+#    - php 
+#    - php-pear 
+#    - php-cgi 
+#    - php-common 
+#    - php-mbstring 
+#    - php-snmp 
+#    - php-gd 
+#    - php-xml 
+#    - php-mysql 
+#    - php-gettext 
+#   - php-bcmath
+
+- name: Make sure php service is running
+  systemd:
+    name: rh-php72-php-fpm
+    state: started
+    enabled: yes
+
+- name: Copy php.zabbix.conf template 
+  template:
+    src: templates/zabbix-php.conf.j2
+    dest: /etc/opt/rh/rh-php72/php-fpm.d/zabbix.conf
+  notify: restart php
+
+#- name: Restart rh-php72-php-fpm and enable boot
+#  service: name=rh-php72-php-fpm state=restarted enabled=yes
+
+- name: Make sure nginx service is running
+  systemd:
+    name: rh-nginx116-nginx
+    state: started
+    enabled: yes
+
+- name: Copy web.zabbix.conf template 
+  template:
+    src: templates/zabbix_web.conf.j2
+    dest: /etc/opt/rh/rh-nginx116/nginx/conf.d/zabbix.conf
+  notify: restart nginx
+
+#- name: Start firewall
+#  service: 
+#    name: firewalld
+#    state: started
+
+#- name: Create firewall rule
+#  firewalld:
+#    port: 80/tcp
+#    permanent: yes
+#    immediate: yes
+#    state: enabled
+#- name: Firewalld reload
+#  command: firewall-cmd --reload

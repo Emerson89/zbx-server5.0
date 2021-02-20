@@ -1,6 +1,11 @@
 ---
 - name: Install Zabbix Server
   hosts: all
+  vars:
+    zbx_database_address: 127.0.0.1
+    zbx_database_password: m19ScDhGljKI#!
+    mysql_port: 3306
+    pass_zabbix: zabbix2020
   become: yes
   roles:
   - zabbix-server

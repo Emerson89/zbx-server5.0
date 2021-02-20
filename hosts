@@ -1,2 +1,4 @@
 #Exemplo instalação aws
-x.x.x.x ansible_ssh_private_key_file=~/Documents/key.pem ansible_user=centos
+#x.x.x.x ansible_ssh_private_key_file=~/Documents/key.pem ansible_user=centos
+[zabbix]
+"{{ ansible_ssh_host }}"

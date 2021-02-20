@@ -8,7 +8,11 @@
   template:
     src: templates/zabbix-php.conf.j2
     dest: /etc/opt/rh/rh-php72/php-fpm.d/zabbix.conf
-  notify: restart php
+
+- name: restart php
+  service:
+    name: rh-php72-php-fpm
+    state: restarted
 
 - name: Make sure nginx service is running
   systemd:
@@ -20,7 +24,11 @@
   template:
     src: templates/zabbix_web.conf.j2
     dest: /etc/opt/rh/rh-nginx116/nginx/conf.d/zabbix.conf
-  notify: restart nginx
+
+- name: restart nginx
+  service:
+    name: rh-nginx116-nginx
+    state: restarted
 
 #- name: Start firewall
 #  service: 

@@ -27,9 +27,10 @@
     name:
         - python
         - python-pip
+        - MySQL-python
     state: present
 
 - name: Install pip packages
   pip:
-    name:
-        - pymysql
+    name: pymysql
+    executable: pip-3

@@ -5,11 +5,16 @@ zbx_frontend_address: 127.0.0.1
 zbx_database_address: 127.0.0.1
 zbx_database_saas: False
 mysql_root_password: Zabbixdb#2019!
+zbx_database_name: zabbix
 zbx_database_user: zabbix
 zbx_database_password: ZabbixDB#2019!
 zabbix_server_package_state: present
 zabbix_server_install_recommends: True
 zabbix_server_install_database_cliente: True
+####Usuário console do Zabbix Server
+user_zabbix: Admin
+####URL para acesso via api
+url_zabbix_api: http://{{ ansible_ssh_host }}/api_jsonrpc.php
 zabbix_repo: zabbix
 zabbix_repo_yum:
   - name: zabbix

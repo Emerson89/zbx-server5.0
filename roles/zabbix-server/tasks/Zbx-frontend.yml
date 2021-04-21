@@ -25,6 +25,11 @@
     src: templates/zabbix_web.conf.j2
     dest: /etc/opt/rh/rh-nginx116/nginx/conf.d/zabbix.conf
 
+- name: Copy nginx.conf template 
+  template:
+    src: templates/nginx44.conf.j2
+    dest: /etc/opt/rh/rh-nginx116/nginx/nginx.conf
+
 - name: restart nginx
   service:
     name: rh-nginx116-nginx

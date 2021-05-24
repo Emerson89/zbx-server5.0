@@ -2,6 +2,7 @@
   yum:
     name: "{{ mysql_repo }}"
     state: latest
+  ignore_errors: True
 
 - name: Install MySQL server
   yum:
